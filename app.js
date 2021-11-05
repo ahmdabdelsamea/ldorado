@@ -34,10 +34,6 @@ app.use('/sell', sell);
 app.use('/dashboard', dashboard);
 app.use('/', pay);
 
-// errors
-app.use(notFound);
-app.use(errorHandler);
-
 if (process.env.NODE_ENV === 'production') {
 	app.use(express.static(path.join(__dirname, 'client', 'build')));
 
@@ -45,5 +41,9 @@ if (process.env.NODE_ENV === 'production') {
 		res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
 	});
 }
+
+// errors
+app.use(notFound);
+app.use(errorHandler);
 
 export default app;
