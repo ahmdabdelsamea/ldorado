@@ -1,0 +1,40 @@
+.failure {
+	background-image: linear-gradient(
+		to right,
+		#eb190a,
+		#ed1f11,
+		#ef2517,
+		#f12a1d,
+		#f32f22,
+		#f63e2f,
+		#f94a3c,
+		#fb5648,
+		#fd6b5e,
+		#fe7e74,
+		#fd9189,
+		#fba39d
+	);
+
+	position: fixed;
+	color: #fff;
+	height: 80px;
+	width: 100vw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.1rem;
+	top: 0;
+	z-index: 100;
+}
+
+@media only screen and (max-width: 660px) {
+	.failure {
+		font-size: 0.8rem;
+	}
+}
+
+@media only screen and (max-width: 460px) {
+	.failure {
+		font-size: 0.6rem;
+	}
+}

@@ -1,0 +1,40 @@
+.success {
+	background-image: linear-gradient(
+		to right,
+		#02a102,
+		#07b206,
+		#0dc20c,
+		#13d412,
+		#18e517,
+		#24ed22,
+		#2df42c,
+		#35fc34,
+		#41fc40,
+		#4bfd4b,
+		#55fd54,
+		#5dfd5d
+	);
+
+	color: #fff;
+	height: 80px;
+	width: 100vw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.1rem;
+	position: fixed;
+	top: 0;
+	z-index: 100;
+}
+
+@media only screen and (max-width: 660px) {
+	.success {
+		font-size: 0.8rem;
+	}
+}
+
+@media only screen and (max-width: 460px) {
+	.success {
+		font-size: 0.6rem;
+	}
+}

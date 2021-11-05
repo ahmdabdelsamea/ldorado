@@ -1,0 +1,50 @@
+.invest-scroll {
+	background: #1a1a1a;
+	width: 100vw;
+	height: 100vh;
+	overflow-y: scroll;
+}
+
+.property-list {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	margin: 120px;
+	grid-gap: 2.5rem;
+}
+
+@media only screen and (max-width: 1200px) {
+	.property-list {
+		grid-template-columns: repeat(2, 1fr);
+		margin: 120px 100px;
+	}
+}
+
+@media only screen and (max-width: 992px) {
+	.property-list {
+		grid-template-columns: repeat(2, 1fr);
+		margin: 120px 80px;
+		grid-gap: 2rem;
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	.property-list {
+		grid-template-columns: repeat(2, 1fr);
+		margin: 120px 30px;
+		grid-gap: 1.8rem;
+	}
+}
+
+@media only screen and (max-width: 700px) {
+	.property-list {
+		grid-template-columns: repeat(1, 1fr);
+		margin: 120px 50px;
+	}
+}
+
+@media only screen and (max-width: 460px) {
+	.property-list {
+		grid-template-columns: repeat(1, 1fr);
+		margin: 120px 20px;
+	}
+}

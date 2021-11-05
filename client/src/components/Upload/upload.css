@@ -1,0 +1,67 @@
+.drag-area {
+	padding: 50px;
+
+	color: #fff;
+
+	justify-content: center;
+
+	background: rgba(0, 0, 0, 0.6);
+	backdrop-filter: blur(15px);
+	-webkit-backdrop-filter: blur(15px);
+	border-radius: 8px;
+}
+
+.drag-area h3 {
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 0.9rem;
+
+	border: 2px dashed #fff;
+	padding: 50px;
+	border-radius: 10px;
+}
+
+.upload-progress-grid {
+	display: grid;
+	grid-gap: 10px;
+	grid-template-columns: 10fr 1fr;
+	margin-bottom: 20px;
+}
+
+.delete-img-btn {
+	background-color: red;
+	color: white;
+
+	/* width: 100%; */
+	border: none;
+	border-radius: 8px;
+
+	font-size: 1rem;
+	padding: 0.3rem 1.6rem;
+
+	transition: transform 0.3s ease;
+	text-decoration: none;
+}
+
+.upload-grid .upload-progress {
+	grid-column: 1/3;
+}
+
+.upload-progress {
+	height: 20px;
+	background: #ccc;
+	border-radius: 10px;
+	overflow: hidden;
+	position: relative;
+	margin: 10px 0;
+}
+
+@media only screen and (max-width: 700px) {
+	.drag-area {
+		padding: 40px;
+	}
+
+	.drag-area h3 {
+		font-size: 0.8rem;
+	}
+}

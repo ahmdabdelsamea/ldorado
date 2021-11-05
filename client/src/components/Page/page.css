@@ -1,0 +1,107 @@
+.page {
+	height: 100vh;
+	position: relative;
+
+	background-position: center right;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.page-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: repeat(4, 1fr);
+	max-width: 1100px;
+	height: 100vh;
+	margin: auto;
+}
+
+.text-wrapper {
+	grid-row: 3/4;
+	color: white;
+	z-index: 1;
+}
+
+.text-wrapper h2 {
+	font-size: 1.2rem;
+	text-transform: uppercase;
+	font-weight: normal;
+	margin-bottom: -8px;
+}
+
+.text-wrapper h1 {
+	font-size: 4rem;
+	text-transform: uppercase;
+	font-weight: 900;
+}
+
+.text-wrapper p {
+	font-size: 1.2rem;
+	margin-bottom: 1rem;
+	text-transform: none;
+}
+
+.anchor-wrapper:enabled {
+	border: none;
+	background-color: #fefe06;
+	padding: 8px;
+	transition: transform 0.3s ease;
+}
+
+.anchor-wrapper:enabled:hover {
+	transform: translateY(-3px);
+	cursor: pointer;
+}
+
+.anchor-wrapper a {
+	color: #000;
+	font-size: 1.2rem;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.anchor-wrapper:disabled {
+	padding: 0;
+	margin: 0;
+	opacity: 0;
+}
+
+@media only screen and (max-width: 1200px) {
+	.page-grid {
+		max-width: 900px;
+	}
+}
+
+@media only screen and (max-width: 992px) {
+	.page-grid {
+		max-width: 700px;
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	.page-grid {
+		max-width: 500px;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	.page-grid {
+		max-width: 300px;
+	}
+
+	.text-wrapper h2 {
+		font-size: 1rem;
+	}
+
+	.text-wrapper h1 {
+		font-size: 3rem;
+	}
+
+	.text-wrapper p {
+		font-size: 1rem;
+	}
+
+	.anchor-wrapper a {
+		font-size: 1rem;
+	}
+}

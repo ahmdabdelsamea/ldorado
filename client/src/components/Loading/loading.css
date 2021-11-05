@@ -1,0 +1,40 @@
+.loading {
+	background-image: linear-gradient(
+		to right,
+		#12054d,
+		#15065b,
+		#180768,
+		#1c0877,
+		#1f0985,
+		#2a1393,
+		#341ba1,
+		#3e24af,
+		#4f35c0,
+		#6045d2,
+		#7055e3,
+		#8066f5
+	);
+
+	height: 80px;
+	width: 100vw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.1rem;
+	position: fixed;
+	top: 0;
+	z-index: 100;
+	color: #fff;
+}
+
+@media only screen and (max-width: 660px) {
+	.loading {
+		font-size: 0.8rem;
+	}
+}
+
+@media only screen and (max-width: 460px) {
+	.loading {
+		font-size: 0.6rem;
+	}
+}

@@ -1,0 +1,20 @@
+.sell-scroll {
+	width: 100vw;
+	height: 100vh;
+	overflow-y: scroll;
+}
+
+.sell {
+	display: grid;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.sell::-webkit-scrollbar {
+	display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.sell {
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
+}
