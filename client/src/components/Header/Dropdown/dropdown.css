@@ -14,7 +14,8 @@
 	right: -100%;
 }
 
-.dropdown-container.is-open {
+.dropdown-container.is-open *::after,
+.dropdown-container.is-open *::before {
 	opacity: 100%;
 	right: 0;
 }
