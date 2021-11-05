@@ -10,7 +10,7 @@ export const Header = () => {
 
 	return (
 		<div>
-			<Dropdown isOpen={isOpen} toggle={toggle} />
+			{/* <Dropdown isOpen={isOpen} toggle={toggle} /> */}
 			<Navbar toggle={toggle} />
 		</div>
 	);

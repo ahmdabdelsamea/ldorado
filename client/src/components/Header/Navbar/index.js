@@ -1,19 +1,20 @@
 import React from 'react';
 import './navbar.css';
 import { Link } from 'react-router-dom';
-import { FaBars, FaUserCircle } from 'react-icons/fa';
+import { FaUserCircle } from 'react-icons/fa';
+// import { FaBars, FaUserCircle } from 'react-icons/fa';
 
-const Navbar = ({ toggle }) => {
+const Navbar = () => {
 	return (
 		<div>
 			<nav>
 				<div className='nav-container'>
 					<Link className='logo' to='/'>
-						L dorado
+						l.dorado
 					</Link>
-					<div className='mobile-icon' onClick={toggle}>
+					{/* <div className='mobile-icon' onClick={toggle}>
 						<FaBars />
-					</div>
+					</div> */}
 					<ul className='nav-menu'>
 						<li className='nav-item'>
 							<Link className='nav-link' to='/learn'>

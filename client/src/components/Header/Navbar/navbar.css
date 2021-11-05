@@ -27,7 +27,6 @@ nav {
 .logo {
 	cursor: pointer;
 	align-items: center;
-
 	text-decoration: none;
 	text-align: center;
 
@@ -100,14 +99,44 @@ nav {
 	color: #fff;
 }
 
+@media screen and (max-width: 500px) {
+	nav {
+		height: 60px;
+	}
+
+	.nav-container {
+		height: 60px;
+	}
+
+	.logo {
+		font-size: 1.8rem;
+		padding: 1rem;
+	}
+
+	.nav-item {
+		height: 60px;
+	}
+
+	.nav-link {
+		font-size: 1rem;
+		padding: 0 0.8rem;
+	}
+
+	.nav-profile-link {
+		margin: 10px 15px 0 0;
+		padding: 5px;
+		font-size: 1.6rem;
+	}
+}
+
 @media screen and (max-width: 800px) {
-	.mobile-icon {
+	/* .mobile-icon {
 		display: block;
 		position: absolute;
 		top: 0;
 		right: 0;
 		transform: translate(-100%, 60%);
-		font-size: 1.8rem;
+		font-size: 1.8rem;	
 		cursor: pointer;
 		color: #fff;
 	}
@@ -118,5 +147,5 @@ nav {
 
 	.profile-btn {
 		display: none;
-	}
+	} */
 }
