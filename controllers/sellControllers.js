@@ -1,6 +1,8 @@
 import { catchError } from '../middleware/index.js';
 import { Property, User } from '../models/index.js';
 
+const { COMMISSION_PERCENTAGE, TOTAL_SHARES } = process.env;
+
 export const addProperty = catchError(async (req, res, next) => {
 	const {
 		overview,
@@ -38,12 +40,12 @@ export const addProperty = catchError(async (req, res, next) => {
 		rentalProperty,
 	} = req.body;
 
-	const newValuation = Number(totalPrice * 1.04);
-	const newSharePrice = Number(newValuation / 1000000);
+	const newValuation = Number(totalPrice * (1 + COMMISSION_PERCENTAGE / 100));
+	const newSharePrice = Number(newValuation / TOTAL_SHARES);
 
 	let imgUrls = [];
 
-	if (files > 0) {
+	if (files.length > 0) {
 		files.map((file) => imgUrls.push({ image: file.url }));
 	} else {
 		imgUrls = [{ image: 'https://source.unsplash.com/kn-UmDZQDjM/1600x1100' }];
