@@ -27,16 +27,18 @@ const Dashboard = ({ history }) => {
 	const userLogin = useSelector((state) => state.userLogin);
 	const { authToken } = userLogin;
 
+	useEffect(() => {
+		if (authToken) {
+			dispatch(getDashboard());
+		}
+	}, [dispatch, authToken, history]);
+
 	const dashboardDetails = useSelector((state) => state.dashboardDetails);
 	const { loading, error, dashboard } = dashboardDetails;
 
 	const addFundsHandler = (values) => {
 		dispatch(addFundsAction(values));
 	};
-
-	useEffect(() => {
-		dispatch(getDashboard());
-	}, [dispatch, authToken, history]);
 
 	const handleLogout = () => {
 		dispatch(logout(history));

@@ -31,7 +31,7 @@ export const register = (values, history) => async (dispatch) => {
 
 		localStorage.setItem('authToken', data.token);
 
-		history.push('/');
+		history.push('/dashboard');
 	} catch (error) {
 		dispatch({
 			type: USER_REGISTER_FAILURE,
@@ -57,7 +57,7 @@ export const login = (values, history) => async (dispatch) => {
 
 		localStorage.setItem('authToken', data.token);
 
-		history.push('/');
+		history.push('/dashboard');
 	} catch (error) {
 		dispatch({
 			type: USER_LOGIN_FAILURE,

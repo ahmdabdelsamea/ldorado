@@ -5,13 +5,11 @@ import {
 	ADD_FUNDS_FAILURE,
 } from '../constants';
 
-export const addFundsAction = (values) => async (dispatch, getState) => {
+export const addFundsAction = (values) => async (dispatch) => {
 	try {
 		dispatch({ type: ADD_FUNDS_REQUEST });
 
-		const {
-			userLogin: { authToken },
-		} = getState();
+		const authToken = localStorage.getItem('authToken');
 
 		// prettier-ignore
 		const config = {

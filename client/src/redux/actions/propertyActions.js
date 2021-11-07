@@ -49,36 +49,33 @@ export const listPropertyDetails = (id) => async (dispatch) => {
 	}
 };
 
-export const addPropertyAction =
-	(values, history) => async (dispatch, getState) => {
-		try {
-			dispatch({ type: PROPERTY_ADD_REQUEST });
+export const addPropertyAction = (values, history) => async (dispatch) => {
+	try {
+		dispatch({ type: PROPERTY_ADD_REQUEST });
 
-			const {
-				userLogin: { authToken },
-			} = getState();
+		const authToken = localStorage.getItem('authToken');
 
-			// prettier-ignore
-			const config = {
+		// prettier-ignore
+		const config = {
 			headers: {
 				"Content-Type": "application/json",
 				"Authorization": `Bearer ${authToken}`,
 			},
 		};
 
-			const { data } = await axios.post('/sell/add', values, config);
+		const { data } = await axios.post('/sell/add', values, config);
 
-			dispatch({ type: PROPERTY_ADD_SUCCESS, payload: data });
+		dispatch({ type: PROPERTY_ADD_SUCCESS, payload: data });
 
-			history.push('/dashboard');
-		} catch (error) {
-			dispatch({
-				type: PROPERTY_ADD_FAILURE,
-				payload: error.response.data.error,
-				// payload:
-				// 	error.response && error.response.data.message
-				// 		? error.response.data.message
-				// 		: error.message,
-			});
-		}
-	};
+		history.push('/dashboard');
+	} catch (error) {
+		dispatch({
+			type: PROPERTY_ADD_FAILURE,
+			payload: error.response.data.error,
+			// payload:
+			// 	error.response && error.response.data.message
+			// 		? error.response.data.message
+			// 		: error.message,
+		});
+	}
+};

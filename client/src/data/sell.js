@@ -2,9 +2,9 @@ const sell = [
 	{
 		id: 1,
 		imgUrl: '',
-		subHeading: 'The road to financial freedom',
+		subHeading: 'Close the deal',
 		heading: 'Sell',
-		body: 'Acquire wealth by investing in real estate without the need to build a credit score, mortgage loans, boatloads of cash or tons of free time to spend on closing deals.',
+		body: 'List your property for initial public offering to sell it fast',
 		isDisabled: false,
 		link: '/sell/add',
 		anchor: '+ Add Property',
