@@ -11,7 +11,7 @@ import auth from './routes/auth.js';
 import invest from './routes/invest.js';
 import sell from './routes/sell.js';
 import dashboard from './routes/dashboard.js';
-import pay from './routes/pay.js';
+import funds from './routes/funds.js';
 
 //DB connection
 connectDB();
@@ -32,7 +32,7 @@ app.use('/', auth);
 app.use('/invest', invest);
 app.use('/sell', sell);
 app.use('/dashboard', dashboard);
-app.use('/', pay);
+app.use('/', funds);
 
 if (process.env.NODE_ENV === 'production') {
 	app.use(express.static(path.join(__dirname, 'client', 'build')));

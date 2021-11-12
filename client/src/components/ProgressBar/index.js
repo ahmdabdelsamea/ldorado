@@ -5,6 +5,10 @@ export const ProgressBar = ({ noSharesLeft }) => {
 	let totalShares = 1000000;
 	let percentage = (noSharesLeft / totalShares) * 100;
 
+	// const addCommas = (num) => {
+	// 	return num.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
+	// };
+
 	return (
 		<div className='progress'>
 			<div className='progress-fill' style={{ width: `${percentage}%` }}></div>

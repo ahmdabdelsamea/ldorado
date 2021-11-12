@@ -47,6 +47,10 @@ const Property = ({ match, history }) => {
 		{ image: 'https://source.unsplash.com/jf1EomjlQi0/1600x1100' },
 	];
 
+	const addCommas = (num) => {
+		return num.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
+	};
+
 	return (
 		<div className='property-scroll'>
 			{loading || investLoading ? (

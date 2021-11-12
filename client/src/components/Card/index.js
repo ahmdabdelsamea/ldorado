@@ -8,9 +8,9 @@ export const InvestCard = ({ property }) => {
 		return (Math.floor(num * 100) / 100).toFixed(2);
 	};
 
-	// const loadingImg = [
-	// 	{ image: 'https://source.unsplash.com/UuGGxuBfYic/1600x1100' },
-	// ];
+	const addCommas = (num) => {
+		return num.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
+	};
 
 	return (
 		<Link className='card' to={`/invest/${property._id}`}>
@@ -19,7 +19,10 @@ export const InvestCard = ({ property }) => {
 			<div className='card-info'>
 				<div className='valuation'>
 					<p>Valuation</p>
-					<h3>{`$${property.valuation}`}</h3>
+					<h3>
+						{'$'}
+						{addCommas(Number(Math.round(property.valuation)))}
+					</h3>
 				</div>
 				<div className='share-price'>
 					<h3>
@@ -35,11 +38,76 @@ export const InvestCard = ({ property }) => {
 				bath
 			</div>
 			<div className='card-address'>
-				{property.propertyNumber} {property.street} {property.city}{' '}
-				{property.state} {property.country} | {property.zip}
+				{property.propertyNumber} {property.street}, {property.city},{' '}
+				{property.state}, {property.country} | {property.zip}
 			</div>
 			<div className='card-progress'>
-				<ProgressBar noSharesLeft={property.noSharesLeft} />
+				<ProgressBar noSharesLeft={addCommas(property.noSharesLeft)} />
+			</div>
+		</Link>
+	);
+};
+
+export const PortfolioCard = ({ property }) => {
+	const addDecimals = (num) => {
+		return (Math.floor(num * 100) / 100).toFixed(2);
+	};
+
+	const addCommas = (num) => {
+		return num.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
+	};
+
+	return (
+		<Link className='card' to={`/invest/${property._id}`}>
+			<img className='card-img' src={property.files[0].image} alt='' />
+
+			<div className='card-info'>
+				<div className='valuation'>
+					<p>Valuation</p>
+					<h3>
+						{'$'}
+						{addCommas(Number(Math.round(property.valuation)))}
+					</h3>
+				</div>
+				<div className='share-price'>
+					<h3>
+						{'$'}
+						{addDecimals(Number(property.sharePrice.toFixed(2)))}
+					</h3>
+					<p>Share Price</p>
+				</div>
+			</div>
+
+			<div className='investments-info'>
+				<div className='total-investment'>
+					<h3>
+						{'$'}
+						{addCommas(
+							Number(Math.round(property.investments[0].totalInvestment))
+						)}
+					</h3>
+					<p>Total Investment</p>
+				</div>
+				<div className='owned-shares'>
+					<h3>{Number(property.investments[0].ownedShares)}</h3>
+					<p>Owned Shares</p>
+				</div>
+			</div>
+			<div className='estimated-dividends'>
+				<p>Estimated Monthly Dividends</p>
+				<h3>
+					{'$'}
+					{addCommas(
+						Number(
+							(property.rentalPrice * property.investments[0].ownedShares) /
+								property.totalShares
+						)
+					)}
+				</h3>
+			</div>
+
+			<div className='card-progress'>
+				<ProgressBar noSharesLeft={addCommas(property.noSharesLeft)} />
 			</div>
 		</Link>
 	);

@@ -1,5 +1,5 @@
 import { catchError } from '../middleware/index.js';
-import { Property, Investment, User } from '../models/index.js';
+import { Property, User } from '../models/index.js';
 
 export const investController = catchError(async (req, res, next) => {
 	const property = await Property.find({});
@@ -20,125 +20,87 @@ export const getPropertyById = catchError(async (req, res, next) => {
 });
 
 export const buyShares = catchError(async (req, res, next) => {
-	const id = req.params.id;
+	const propertyId = req.params.id;
 	const investorId = req.user._id;
 	const { shares } = req.body;
 
-	if (id && investorId && shares) {
-		const { createdById, noSharesLeft, sharePrice } = await Property.findById(
-			id
-		);
-		if (createdById && noSharesLeft && sharePrice) {
-			const totalInvestment = sharePrice * shares;
+	if (propertyId && investorId && shares) {
+		const { noSharesLeft, sharePrice } = await Property.findById(propertyId);
+
+		if (noSharesLeft && sharePrice) {
+			const investedMoney = sharePrice * shares;
 			const newSharesLeft = noSharesLeft - shares;
 
 			const { wallet } = await User.findById(investorId);
 
-			if (wallet < totalInvestment) {
+			if (wallet < investedMoney) {
 				res
 					.status(400)
 					.json({ message: 'Wallet has not enough money: Add Funds' });
 			} else {
-				const investmentExists = await Investment.findOne({
-					investIn: id,
-					investBy: investorId,
+				const newWallet = wallet - investedMoney;
+
+				const investmentExists = await Property.findOne({
+					_id: propertyId,
+					'investments.investor': investorId,
 				});
 
 				if (investmentExists) {
-					const { _id, ownedShares } = investmentExists;
+					const { investments } = investmentExists;
+
+					const ownedShares = investments[0].ownedShares;
+					const totalInvestment = investments[0].totalInvestment;
+
 					const newOwnedShares = ownedShares + shares;
+					const newTotalInvestment = totalInvestment + investedMoney;
 
-					const newInvestment = await Investment.findOneAndUpdate(
-						{ _id: _id },
-						{ $set: { ownedShares: newOwnedShares } },
+					const newInvestment = await Property.findOneAndUpdate(
+						{ _id: propertyId, 'investments.investor': investorId },
+						{
+							$set: {
+								noSharesLeft: newSharesLeft,
+								'investments.$.ownedShares': newOwnedShares,
+								'investments.$.totalInvestment': newTotalInvestment,
+							},
+						},
 						{ new: true }
 					);
 
-					const { noSharesLeft } = await Property.findOneAndUpdate(
-						{ _id: id },
-						{ $set: { noSharesLeft: newSharesLeft } },
-						{ new: true }
-					);
-
-					const newProperty = await Property.findOneAndUpdate(
-						{ _id: id },
-						{ $push: { investments: newInvestment } },
-						{ new: true }
-					);
-
-					const newInvestorInvestment = await User.findOneAndUpdate(
+					const updateInvestorWallet = await User.findOneAndUpdate(
 						{ _id: investorId },
-						{ $push: { investments: newInvestment } },
-						{ new: true }
-					);
-
-					const newInvestorWallet = wallet - totalInvestment;
-
-					const newInvestor = await User.findOneAndUpdate(
-						{ _id: investorId },
-						{ $set: { wallet: newInvestorWallet } },
-						{ new: true }
-					);
-
-					const newSeller = await User.findOneAndUpdate(
-						{ _id: createdById },
-						{ $push: { purchases: newInvestment } },
+						{ $set: { wallet: newWallet } },
 						{ new: true }
 					);
 
 					res.status(200).json({
 						newInvestment,
-						// newProperty,
-						// newInvestor,
-						// newSeller,
 					});
 				} else {
-					const newInvestment = await Investment.create({
-						investBy: investorId,
-						investTo: createdById,
-						investIn: id,
-						investedQty: shares,
-						investedMoney: totalInvestment,
+					const investment = {
+						investor: investorId,
 						ownedShares: shares,
-					});
+						totalInvestment: investedMoney,
+					};
+					const newInvestment = await Property.findOneAndUpdate(
+						{ _id: propertyId },
+						{ $push: { investments: investment } },
+						{ new: true }
+					);
 
 					const { noSharesLeft } = await Property.findOneAndUpdate(
-						{ _id: id },
+						{ _id: propertyId },
 						{ $set: { noSharesLeft: newSharesLeft } },
 						{ new: true }
 					);
 
-					const newProperty = await Property.findOneAndUpdate(
-						{ _id: id },
-						{ $push: { investments: newInvestment } },
-						{ new: true }
-					);
-
-					const newInvestorInvestment = await User.findOneAndUpdate(
+					const updateInvestorWallet = await User.findOneAndUpdate(
 						{ _id: investorId },
-						{ $push: { investments: newInvestment } },
-						{ new: true }
-					);
-
-					const newInvestorWallet = wallet - totalInvestment;
-
-					const newInvestor = await User.findOneAndUpdate(
-						{ _id: investorId },
-						{ $set: { wallet: newInvestorWallet } },
-						{ new: true }
-					);
-
-					const newSeller = await User.findOneAndUpdate(
-						{ _id: createdById },
-						{ $push: { purchases: newInvestment } },
+						{ $set: { wallet: newWallet } },
 						{ new: true }
 					);
 
 					res.status(200).json({
 						newInvestment,
-						// newProperty,
-						// newInvestor,
-						// newSeller,
 					});
 				}
 			}

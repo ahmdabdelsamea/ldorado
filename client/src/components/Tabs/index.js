@@ -6,6 +6,10 @@ export const Tabs = ({ details }) => {
 		return (Math.round(num * 100) / 100).toFixed(2);
 	};
 
+	const addCommas = (num) => {
+		return num.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
+	};
+
 	const [toggleState, setToggleState] = useState(1);
 
 	const toggleTab = (index) => {
@@ -46,7 +50,10 @@ export const Tabs = ({ details }) => {
 					<div className='property-info'>
 						<div className='property-valuation '>
 							<p>Valuation</p>
-							<h3>{`$${details.valuation}`}</h3>
+							<h3>
+								{'$'}
+								{addCommas(Number(Math.round(details.valuation)))}
+							</h3>
 						</div>
 						<div className='property-share-price'>
 							<h3>
@@ -59,8 +66,8 @@ export const Tabs = ({ details }) => {
 					<div className='property-overview'>
 						<p>Location</p>
 						<h3>
-							{details.propertyNumber} {details.street} {details.city}{' '}
-							{details.state} {details.country} | {details.zip}
+							{details.propertyNumber} {details.street}, {details.city},{' '}
+							{details.state}, {details.country} | {details.zip}
 						</h3>
 						<p>Type</p>
 						<h3>{details.subType}</h3>

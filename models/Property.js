@@ -136,8 +136,9 @@ const propertySchema = new mongoose.Schema(
 		},
 		investments: [
 			{
-				type: mongoose.Schema.Types.ObjectId,
-				ref: 'Investment',
+				investor: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+				ownedShares: { type: Number },
+				totalInvestment: { type: Number },
 			},
 		],
 	},

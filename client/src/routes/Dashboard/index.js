@@ -1,11 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Formik, Form } from 'formik';
-import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { addFundsAction, getDashboard, logout } from '../../redux/actions';
-import FormikControl from '../../components/FormikComponents/FormikControl';
-import { InvestCard, Failure, Loading } from '../../components';
+import { getDashboard, logout } from '../../redux/actions';
+import { InvestCard, PortfolioCard, Failure, Loading } from '../../components';
 import './dashboard.css';
 
 const Dashboard = ({ history }) => {
@@ -21,24 +18,15 @@ const Dashboard = ({ history }) => {
 
 	const dispatch = useDispatch();
 
-	const addFunds = useSelector((state) => state.addFunds);
-	const { fundLoading, fundError } = addFunds;
-
 	const userLogin = useSelector((state) => state.userLogin);
 	const { authToken } = userLogin;
 
 	useEffect(() => {
-		if (authToken) {
-			dispatch(getDashboard());
-		}
+		dispatch(getDashboard());
 	}, [dispatch, authToken, history]);
 
 	const dashboardDetails = useSelector((state) => state.dashboardDetails);
 	const { loading, error, dashboard } = dashboardDetails;
-
-	const addFundsHandler = (values) => {
-		dispatch(addFundsAction(values));
-	};
 
 	const handleLogout = () => {
 		dispatch(logout(history));
@@ -48,28 +36,12 @@ const Dashboard = ({ history }) => {
 		history.push('/edit');
 	};
 
-	const initialValues = {
-		funds: 0,
-	};
-
-	const validationSchema = Yup.object().shape({
-		funds: Yup.number()
-			.typeError('you must specify a number')
-			.positive()
-			.integer()
-			.min(1, 'Min value is $1')
-			.required('Required!'),
-	});
-
 	return (
 		<div className='dashboard-scroll'>
-			{loading || fundLoading ? (
+			{loading ? (
 				<Loading />
-			) : error || fundError ? (
-				<div>
-					<Failure>{error}</Failure>
-					<Failure>{fundError}</Failure>
-				</div>
+			) : error ? (
+				<Failure>{error}</Failure>
 			) : (
 				<div className='dashboard-page'>
 					<div className='wallet'>
@@ -80,40 +52,12 @@ const Dashboard = ({ history }) => {
 							</h2>
 
 							<h3>USD {addDecimals(Number(dashboard.wallet).toFixed(2))}</h3>
-						</div>
-						<div className='wallet-column-two'>
-							<Formik
-								initialValues={initialValues}
-								validationSchema={validationSchema}
-								onSubmit={addFundsHandler}
+							<button
+								className='add-funds'
+								onClick={() => history.push('/funds')}
 							>
-								{(formik) => {
-									return (
-										<div>
-											<Form className='form-flex'>
-												<div>
-													<FormikControl
-														control='input'
-														type='number'
-														label=''
-														name='funds'
-														min={1}
-													/>
-												</div>
-												<div>
-													<button
-														className='add-funds'
-														type='submit'
-														disabled={!(formik.isValid && formik.dirty)}
-													>
-														+ Add Funds
-													</button>
-												</div>
-											</Form>
-										</div>
-									);
-								}}
-							</Formik>
+								+ Add Funds
+							</button>
 						</div>
 					</div>
 					<div className='yours'>
@@ -146,7 +90,7 @@ const Dashboard = ({ history }) => {
 											<div className='property-list'>
 												{dashboard.investedInProperties.map((propertyCard) => (
 													<div key={propertyCard._id}>
-														<InvestCard property={propertyCard} />
+														<PortfolioCard property={propertyCard} />
 													</div>
 												))}
 											</div>

@@ -23,6 +23,7 @@ import NotFound from './NotFound';
 import Disclosure from './Disclosure';
 import Privacy from './Privacy';
 import Terms from './Terms';
+import Funds from './Funds';
 
 const Routes = () => {
 	return (
@@ -32,6 +33,7 @@ const Routes = () => {
 				<Route exact path='/learn' component={Learn} />
 				<Route exact path='/invest' component={Invest} />
 				<Route exact path='/buy' component={Buy} />
+				<Route exact path='/funds' component={Funds} />
 
 				<Route exact path='/rent' component={Rent} />
 				<Route path='/invest/:id' component={Property} />

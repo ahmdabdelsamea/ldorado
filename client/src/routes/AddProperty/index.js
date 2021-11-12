@@ -185,7 +185,7 @@ const AddProperty = ({ history }) => {
 		subType: Yup.string().required('Required!'),
 		overview: Yup.string()
 			.min(3, 'Too Short!')
-			.max(1000, 'Too Long!')
+			.max(1500, 'Too Long!')
 			.required('Required!'),
 		propertyNumber: Yup.number().required('Required!'),
 		street: Yup.string()
@@ -205,12 +205,12 @@ const AddProperty = ({ history }) => {
 		area: Yup.number().required('Required!'),
 		noBeds: Yup.number().required('Required!'),
 		noBath: Yup.number().required('Required!'),
-		flooring: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!'),
-		heating: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!'),
-		cooling: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!'),
-		parking: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!'),
-		appliances: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!'),
-		laundry: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!'),
+		flooring: Yup.string().min(2, 'Too Short!').max(100, 'Too Long!'),
+		heating: Yup.string().min(2, 'Too Short!').max(100, 'Too Long!'),
+		cooling: Yup.string().min(2, 'Too Short!').max(100, 'Too Long!'),
+		parking: Yup.string().min(2, 'Too Short!').max(100, 'Too Long!'),
+		appliances: Yup.string().min(2, 'Too Short!').max(100, 'Too Long!'),
+		laundry: Yup.string().min(2, 'Too Short!').max(100, 'Too Long!'),
 		interiorFeatures: Yup.string().min(2, 'Too Short!').max(500, 'Too Long!'),
 		exteriorFeatures: Yup.string().min(2, 'Too Short!').max(500, 'Too Long!'),
 		parcelNumber: Yup.number().required('Required!'),
@@ -229,6 +229,7 @@ const AddProperty = ({ history }) => {
 	const addPropertyHandler = (values) => {
 		dispatch(addPropertyAction(values, history));
 	};
+
 	return (
 		<div className='form-page'>
 			{loading && <Loading />}

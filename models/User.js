@@ -18,15 +18,10 @@ const userSchema = new mongoose.Schema(
 		email: {
 			type: String,
 			required: [true, 'email is required!'],
-			unique: true,
 			match: [
 				/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
 				'Invalid email',
 			],
-		},
-		stripeId: {
-			type: String,
-			unique: true,
 		},
 		password: {
 			type: String,
@@ -49,21 +44,12 @@ const userSchema = new mongoose.Schema(
 			required: true,
 			default: 'user',
 		},
-		investments: [
-			{
-				type: mongoose.Schema.Types.ObjectId,
-				ref: 'Investment',
-			},
-		],
-		ListedProperties: [
-			{
-				type: mongoose.Schema.Types.ObjectId,
-				ref: 'Property',
-			},
-		],
+		stripeCustomerId: {
+			type: String,
+		},
 		wallet: {
 			type: Number,
-			default: 0,
+			default: 10,
 		},
 
 		isVerified: Boolean,
