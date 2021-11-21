@@ -15,7 +15,7 @@ const Funds = ({ history }) => {
 	const [message, setMessage] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
 
-	const handleSubmit = async (e) => {
+	const addFundsHandler = async (e) => {
 		e.preventDefault();
 
 		if (!stripe || !elements) {
@@ -93,7 +93,7 @@ const Funds = ({ history }) => {
 				<div className='router-wrapper'>
 					<h1>ADD FUNDS</h1>
 				</div>
-				<form id='payment-form' className='form-grid' onSubmit={handleSubmit}>
+				<form id='payment-form' className='form-grid' onSubmit={addFundsHandler}>
 					<label htmlFor='balance'>Balance in USD</label>
 					<input
 						type='number'

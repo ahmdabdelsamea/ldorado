@@ -156,7 +156,7 @@ function Register({ history }) {
 									/>
 									<div className='two-columns'>
 										<p className='terms'>
-											By clicking this button, you agree to Ldorado's
+											By clicking this button, you agree to l.dorado's
 											<Link to='/terms'> Terms </Link> and
 											<Link to='privacy'> Privacy Policy</Link>
 										</p>

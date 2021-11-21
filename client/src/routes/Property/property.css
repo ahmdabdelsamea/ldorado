@@ -15,7 +15,12 @@
 
 	transition: 0.5s ease;
 }
-
+/* .shares-input {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+} */
 .shares-input {
 	display: grid;
 	grid-gap: 1rem;
@@ -26,6 +31,9 @@
 	align-items: end;
 }
 
+.total-investment {
+	grid-column: 2/3;
+}
 .total-investment h3 {
 	font-size: 2rem;
 }
@@ -36,6 +44,7 @@
 }
 
 input[name='shares'] {
+	grid-column: 1/2;
 	background: rgb(158, 158, 158) !important;
 	display: block;
 	width: 100%;
@@ -51,6 +60,10 @@ input[name='shares'] {
 	background-image: none;
 	border: none;
 	border-radius: 8px;
+}
+
+.invest-btn-container {
+	grid-column: 3/4;
 }
 
 .invest-btn-container p {

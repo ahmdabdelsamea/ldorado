@@ -78,32 +78,35 @@ export const PortfolioCard = ({ property }) => {
 				</div>
 			</div>
 
-			<div className='investments-info'>
-				<div className='total-investment'>
+			<div className='investments-container'>
+				<div className='info-container'>
 					<h3>
 						{'$'}
 						{addCommas(
 							Number(Math.round(property.investments[0].totalInvestment))
 						)}
 					</h3>
-					<p>Total Investment</p>
+					<p>Total</p>
+					<p>Investment</p>
 				</div>
-				<div className='owned-shares'>
+				<div className='info-container'>
 					<h3>{Number(property.investments[0].ownedShares)}</h3>
-					<p>Owned Shares</p>
+					<p>Owned</p>
+					<p>Shares</p>
 				</div>
-			</div>
-			<div className='estimated-dividends'>
-				<p>Estimated Monthly Dividends</p>
-				<h3>
-					{'$'}
-					{addCommas(
-						Number(
-							(property.rentalPrice * property.investments[0].ownedShares) /
-								property.totalShares
-						)
-					)}
-				</h3>
+				<div className='info-container'>
+					<h3>
+						{'$'}
+						{addCommas(
+							Number(
+								(property.rentalPrice * property.investments[0].ownedShares) /
+									property.totalShares
+							).toFixed(3)
+						)}
+					</h3>
+					<p>Monthly</p>
+					<p>Dividends*</p>
+				</div>
 			</div>
 
 			<div className='card-progress'>

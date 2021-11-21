@@ -3,14 +3,14 @@ import bodyParser from 'body-parser';
 
 import { protect } from '../middleware/index.js';
 import {
-	getPublicKey,
+	getPublishableKey,
 	stripeAddFunds,
 	stripeWebhook,
 } from '../controllers/index.js';
 
 const router = express.Router();
 
-router.route('/stripe-public-key').get(getPublicKey);
+router.route('/getPublishableKey').get(getPublishableKey);
 router.route('/create-payment-intent').post(protect, stripeAddFunds);
 router.post(
 	'/webhook',

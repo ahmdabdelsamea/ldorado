@@ -1,4 +1,4 @@
-const { STRIPE_SECRET_KEY, STRIPE_PUBLIC_KEY, STRIPE_WEBHOOK_SECRET } =
+const { STRIPE_SECRET_KEY, STRIPE_PUBLISHABLE_KEY, STRIPE_WEBHOOK_SECRET } =
 	process.env;
 
 import { User } from '../models/index.js';
@@ -8,8 +8,9 @@ import { v4 as uuidv4 } from 'uuid';
 import Stripe from 'stripe';
 const stripe = new Stripe(STRIPE_SECRET_KEY);
 
-export const getPublicKey = catchError(async (req, res, next) => {
-	res.json({ STRIPE_PUBLIC_KEY });
+export const getPublishableKey = catchError(async (req, res, next) => {
+	const publishableKey = STRIPE_PUBLISHABLE_KEY;
+	res.json({ publishableKey });
 });
 
 export const stripeAddFunds = catchError(async (req, res, next) => {

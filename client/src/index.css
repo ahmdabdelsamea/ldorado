@@ -59,5 +59,6 @@ body {
 		hsla(0, 0%, 0%, 1) 100%
 	);
 
+
 	filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#B055E1", endColorstr="#853AC9", GradientType=1 );
 }
