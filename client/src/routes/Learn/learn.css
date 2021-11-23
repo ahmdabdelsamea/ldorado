@@ -6,45 +6,15 @@
 
 .learn {
 	display: grid;
-	margin: 120px;
 }
 
-.learn-section {
-	max-width: 600px;
-	margin-bottom: 3rem;
+/* Hide scrollbar for Chrome, Safari and Opera */
+.learn::-webkit-scrollbar {
+	display: none;
 }
 
-.learn-section h2 {
-	font-size: 2rem;
-	color: #fff;
-	font-weight: bold;
-	text-transform: uppercase;
-	margin-bottom: 1rem;
-}
-
-.learn-section p {
-	font-size: 1.2rem;
-	color: #fff;
-	text-transform: none;
-	margin-bottom: 1rem;
-}
-
-@media only screen and (max-width: 600px) {
-	.learn {
-		margin: 120px 60px;
-	}
-
-	.learn-section h2 {
-		font-size: 1.6rem;
-	}
-
-	.learn-section p {
-		font-size: 1rem;
-	}
-}
-
-@media only screen and (max-width: 400px) {
-	.learn {
-		margin: 120px 30px;
-	}
+/* Hide scrollbar for IE, Edge and Firefox */
+.learn {
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
 }
